@@ -5,6 +5,7 @@ set -x
 if grep -E "^\. dot-bash$" ~/.bashrc
 then
 	echo "it is found"
+    cp dot-bashrc ~/.dot-bash
 else
 	echo "it is not found"
     cp dot-bashrc ~/.dot-bash
@@ -13,3 +14,4 @@ else
 fi
 
 cp dot-vim ~/.vimrc
+cp gitconfig ~/.gitconfig
