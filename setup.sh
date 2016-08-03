@@ -8,7 +8,7 @@ then
 else
 	echo "it is not found"
     cp dot-bashrc ~/.dot-bash
-    echo -e "\n. dot-bash" >> ~/.bashrc
+    echo -e "\n. \$HOME/.dot-bash" >> ~/.bashrc
     source ~/.bashrc
 fi
 
