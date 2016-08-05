@@ -16,3 +16,6 @@
 
 [commit]
 	gpgsign = true
+
+[push]
+	default = matching
