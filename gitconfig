@@ -1,14 +1,18 @@
 [user]
 	email = udienz@gmail.com
 	name = Mahyuddin Susanto
+	signingkey = 90B36C5B
 
 [color]
-branch = auto
-diff = auto
-interactive = auto
-status = auto
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
 
 [alias]
-cp = cherry-pick
-lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+    cp = cherry-pick
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+
+[commit]
+	gpgsign = true
