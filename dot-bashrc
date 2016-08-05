@@ -9,6 +9,7 @@ export DEBEMAIL="udienz@gmail.com"
 if [ -d $HOME/.rvm/bin ]; then
     export PATH="$PATH:$HOME/.rvm/bin"
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+    [[ -r $HOME/.rvm/scripts/completion ]] && . $HOME/.rvm/scripts/completion
     fi
 
 if [ -f ~/.bash_local ]; then
