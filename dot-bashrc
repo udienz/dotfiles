@@ -6,6 +6,10 @@ alias bim='vim'
 export DEBFULLNAME="Mahyuddin Susanto"
 export DEBEMAIL="udienz@gmail.com"
 
+if [ -d $HOME/bin ]; then
+    export PATH=$HOME/bin:$PATH
+    fi
+
 if [ -d $HOME/.rvm/bin ]; then
     export PATH="$PATH:$HOME/.rvm/bin"
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
