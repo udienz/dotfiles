@@ -16,6 +16,24 @@ if [ -d $HOME/.rvm/bin ]; then
     [[ -r $HOME/.rvm/scripts/completion ]] && . $HOME/.rvm/scripts/completion
     fi
 
+PATH=$PATH:$HOME/bin:$HOME/rancid/bin
+
+export GPG_TTY=$(tty)
+
+[ -r $HOME/.byobu/prompt ] && . $HOME/.byobu/prompt   #byobu-prompt#
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+
 if [ -f ~/.bash_local ]; then
     . ~/.bash_local
     fi

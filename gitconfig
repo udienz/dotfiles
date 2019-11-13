@@ -19,3 +19,10 @@
 
 [push]
 	default = matching
+
+[gpg]
+        program = gpg2
+
+# sudo apt install -y gnupg2
+# check with
+# echo "test" | gpg2 --clearsign

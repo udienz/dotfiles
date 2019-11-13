@@ -1,6 +1,8 @@
 #!/bin/bash
 
 set -x
+sudo apt install gnupg2 -y
+
 #if grep -Fxq "dot-bash" ~/.bashrc
 if grep -E ".dot-bash$" ~/.bashrc
 then
