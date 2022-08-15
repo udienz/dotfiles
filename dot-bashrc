@@ -16,7 +16,7 @@ if [ -d $HOME/.rvm/bin ]; then
     [[ -r $HOME/.rvm/scripts/completion ]] && . $HOME/.rvm/scripts/completion
     fi
 
-PATH=$PATH:$HOME/bin:$HOME/rancid/bin
+PATH=$HOME/bin:$HOME/rancid/bin:$HOME/.local/bin:$PATH
 
 export GPG_TTY=$(tty)
 
