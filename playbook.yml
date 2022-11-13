@@ -1,0 +1,96 @@
+---
+- name: User setup
+  hosts: all
+  become: true
+  tasks:
+      - name: Add user mahyuddin
+        user:
+            name: mahyuddin
+            comment: Mahyuddin Susanto
+            shell: /bin/bash
+
+      - name: Add authorized_keys
+        authorized_key:
+            user: mahyuddin
+            state: present
+            key: https://github.com/udienz.keys
+
+      - name: Update database and upgrade packages
+        ansible.builtin.apt:
+            update_cache: yes
+            upgrade: yes
+            cache_valid_time: 86400
+            autoremove: yes
+            autoclean: yes
+
+      - name: Install packages
+        ansible.builtin.package:
+            pkg: "{{ item }}"
+            state: latest
+        with_items:
+            - sudo
+            - vim
+            - htop
+            - iftop
+            - byobu
+            - git
+            - bind9-utils
+            - bind9-host
+            - whois
+            - bash-completion
+            - less
+            - mtr-tiny
+            - rsync
+            - curl
+            - inetutils-traceroute
+            - inetutils-ping
+            - apt-transport-https
+            - python3-minimal
+            - gnupg2
+
+      - name: Add to sudoers
+        lineinfile:
+            path: /etc/sudoers.d/mahyuddin
+            line: 'mahyuddin ALL = NOPASSWD: ALL'
+            state: present
+            mode: 0400
+            create: yes
+            validate: 'visudo -cf %s'
+
+      - name: Set timezone
+        community.general.timezone:
+          name: Asia/Jakarta
+
+      - name: Update sensible editor
+        community.general.alternatives:
+          name: editor
+          path: /usr/bin/vim.basic
+
+      - name: Disable unnecessary multipathd service
+        ansible.builtin.systemd:
+         state: stopped
+         enabled: no
+         name: multipathd.service
+
+      - name: Disable unnecessary multipathd socket
+        ansible.builtin.systemd:
+         state: stopped
+         enabled: no
+         name: multipathd.socket
+
+      - name: Disable unnecessary snapd service
+        ansible.builtin.systemd:
+         state: stopped
+         enabled: no
+         name: snapd.socket
+
+      - name: Disable unnecessary snapd socket
+        ansible.builtin.systemd:
+         state: stopped
+         enabled: no
+         name: snapd.service
+
+      - name: Change editor to Vim
+        community.general.alternatives:
+          name: editor
+          path: /usr/bin/vim.basic
