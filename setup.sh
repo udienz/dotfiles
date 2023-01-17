@@ -18,6 +18,7 @@ source ~/.bashrc
 
 # setup ansible
 sudo apt install python3-pip -y
+PATH=$HOME/.local/bin:$PATH
 pip3 install ansible
 ansible-playbook -i inventory.ini playbook.yml
 
