@@ -66,31 +66,43 @@
           name: editor
           path: /usr/bin/vim.basic
 
+      # Stop/disable only if the unit exists; skip hosts without it.
       - name: Disable unnecessary multipathd service
         ansible.builtin.systemd:
          state: stopped
          enabled: no
          name: multipathd.service
+        register: multipathd_service
+        failed_when:
+          - multipathd_service is failed
+          - "'Could not find' not in (multipathd_service.msg | default(''))"
 
       - name: Disable unnecessary multipathd socket
         ansible.builtin.systemd:
          state: stopped
          enabled: no
          name: multipathd.socket
+        register: multipathd_socket
+        failed_when:
+          - multipathd_socket is failed
+          - "'Could not find' not in (multipathd_socket.msg | default(''))"
 
       - name: Disable unnecessary snapd service
         ansible.builtin.systemd:
          state: stopped
          enabled: no
-         name: snapd.socket
+         name: snapd.service
+        register: snapd_service
+        failed_when:
+          - snapd_service is failed
+          - "'Could not find' not in (snapd_service.msg | default(''))"
 
       - name: Disable unnecessary snapd socket
         ansible.builtin.systemd:
          state: stopped
          enabled: no
-         name: snapd.service
-
-      - name: Change editor to Vim
-        community.general.alternatives:
-          name: editor
-          path: /usr/bin/vim.basic
+         name: snapd.socket
+        register: snapd_socket
+        failed_when:
+          - snapd_socket is failed
+          - "'Could not find' not in (snapd_socket.msg | default(''))"
